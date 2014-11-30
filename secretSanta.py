@@ -7,9 +7,14 @@ import smtplib
     but so is your secret santa.
 
     To make this program your own, simply add the names of the people you
-    want involved. To send messages to people, an API should be introduced,
-    and the person 'drawing' (random person from 'people') will receive the
-    text that is printed in the ELSE clause inside the while-loop.
+    want involved. To send messages to people, add the email addresses of the people
+    you would like to email, and modify the email section inside of secretSantaEmail().
+    This will include 
+
+         1. Adding your gmail account in `login`, 
+         2. Adding your password to your gmail account
+         3. Modifying the `message` to something of your own (right now it includes "The Java House")
+         4. Modigying the Title of the email to something a bit more professional, maybe.
 
     Either that, or just have fun running different scenarios.
 
@@ -21,12 +26,17 @@ import smtplib
     desire to run the test exists. Else, just comment it out with a '#' infront
     of the call to testCases(), located directly at the bottom.
 
+###################################################################################
+# NOTE THAT RUNNING THIS PROGRAM WITH THE print(spy) MAY RUIN THE FUN OF THE GAME  #
+#    FOR PEOPLE!!!! THIS SHOULD BE COMMENTED OUT IF YOU ARE NOT A NOSY PERSON      #
+##################################################################################
+
 For the main part of the program (EMAILING PEOPE!), jump to line 85 and change
 the gmail credentials that are spelled out for you! Good luck, young coder!
     
 '''
-people = [("Eddie","eddie@domain.bleh"), ("Matt","Matt@domain.bleh"),
-          ("Stephen","stephen@domain.bleh"),("Tanner","tanner.l.woody@gmail.com")]
+people = [("Eddie","eddie@domain.com"), ("Matt","matt@domain.edu"),
+          ("Stephen","stephen@domain.gov"),("Tanner","tanner@domain.org")]
 hat    = ["Eddie", "Matt", "Stephen","Tanner"]
 length = len(hat)
 
@@ -246,4 +256,3 @@ def BADtestCases():
       print("PERCENT GOOD:\t{p}\nPERCENT BAD:\t{f}".format(p=good, f=bad))
 
 BADtestCases()
-
