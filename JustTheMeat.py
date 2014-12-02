@@ -2,6 +2,8 @@ import random
 import smtplib
 
 '''
+Written by: Tanner Lee Woody
+
 This is the meat of the emailing program for Secret Santa.
 
 Please note that you must have a GMail account in order to use
