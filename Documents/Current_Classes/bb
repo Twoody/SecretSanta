@@ -1,0 +1,277 @@
+import random
+import smtplib
+
+'''
+This is the meat of the emailing program for Secret Santa.
+
+Please note that you must have a GMail account in order to use
+this program. If you do not have a gmail account, then you will
+have to go make one before you should continue any execution of this
+python function.
+
+To run this program, a few details must be included. These
+details are the following:
+
+    1. A list of `people` that has nodes that are tuples.
+          1.a. The first node should contain the persons name
+          1.b. The second node should contain the persons email address
+
+    2. A list of names for the `hat`. These names should be in the same order
+       as the names listed in `people`.
+           WARNING: IF THE NAMES ARE NOT THE SAME, AN ASSERTION ERROR WILL
+                    TAKE PLACE BEFORE SENDING OUT IMPROPER EMAILS
+
+    3. The Users login information should also be entered in the head
+       of the secretSantaEmail() function. The other information should also
+       be changed accordingly here (i.e. `organization`, `year`, etc.).
+
+    4. 
+'''
+
+people = [
+          ("Anya Shmitz"           ,"schmitz_anya@yahoo.com")           , #1
+          ("Asa Thomas"            ,"Asa-Thomas@uiowa.edu")             ,
+          ("Bailey Cole"           ,"Baileycole@me.com")                , #3
+          ("Cambria Tudor"         ,"Cambria-tudor@uiowa.edu")          ,
+          ("Collin Scott"          ,"collinscottm@gmail.com")           , #5
+          ("GG"                    ,"Madison-Glanz-guessford@uiowa.edu"),
+          ("Kerry Trewartha"       ,"ktrewartha@gmail.com")             , #7
+          ("Lauren Lardner"        ,"lauren.lardner@gmail.com")         , 
+          ("Liz Stam"              ,"lizstam21@gmail.com")              , #9
+          ("Luci Coconate"         ,"luciacoconate@gmail.com")          ,
+          ("Mathew Marqusee"       ,"Mattmarqusee@gmail.com")           , #11
+          ("Maureen Kelley"        ,"mlkelley0986@gmail.com")           ,
+          ("Max Hackmann"          ,"Mhackmann31@gmail.com")            , #13
+          ("Orion Mccullough-Smith","Orion-McCullough-smith@uiowa.edu") ,
+          ("Tanner Woody"          ,"tanner.l.woody@gmail.com")         , #15
+          ("Tony Logan"            ,"tnylgn@gmail.com")                 ,
+          ("Nicole Millard"        ,"nicole@thejavahouse.com")          , #17
+          ("Shereena Honary"       ,"shereena@thejavahouse.com")        ,
+          ("Monique Singson"       ,"monique@thejavahouse.com")         , #19
+          ("Jake Hansen"           ,"jakeh@thejavahouse.com")           ,
+          ("Kiersey Stanley"       ,"kiersey.stanley@gmail.com")        , #21
+          ("Sam Gilbaugh"         ,"samuel-gilbaugh@uiowa.edu")         ,
+          ("Kate Kraabel"          ,"katherine.d.kraabel@gmail.com")    , #23
+          ("Michael DeAngelis"     ,"mickeydeangelis@gmail.com")        ,
+          ("Lauren Sillman"        ,"lauren-sillman@uiowa.edu")         , #25
+          ("Vanessa Andrade"       ,"vanessa-andrade@uiowa.edu")        , 
+          ("Lizzy Swartzendruber"  ,"eswartz1996@gmail.com")              #27
+          ]
+
+hat    = [
+          "Anya Shmitz"           , #1
+          "Asa Thomas"            ,
+          "Bailey Cole"           , #3
+          "Cambria Tudor"         ,
+          "Collin Scott"          , #5
+          "GG"                    ,
+          "Kerry Trewartha"       , #7
+          "Lauren Lardner"        , 
+          "Liz Stam"              , #9
+          "Luci Coconate"         , 
+          "Mathew Marqusee"       , #11
+          "Maureen Kelley"        , 
+          "Max Hackmann"          , 
+          "Orion Mccullough-Smith", #14
+          "Tanner Woody"          , 
+          "Tony Logan"            , #16
+          "Nicole Millard"        , 
+          "Shereena Honary"       , #18
+          "Monique Singson"       ,
+          "Jake Hansen"           , #20
+          "Kiersey Stanley"       ,
+          "Sam Gilbaugh"          ,
+          "Kate Kraabel"          , #23
+          "Michael DeAngelis"     ,
+          "Lauren Sillman"        , #25
+          "Vanessa Andrade"       , 
+          "Lizzy Swartzendruber"  , #27
+         ]
+
+length = len(hat)
+
+def sendemail(from_addr, to_addr_list, cc_addr_list,
+              subject, message,
+              login, password,
+              smtpserver='smtp.gmail.com:587'):
+    header  = 'From: %s\n' % from_addr
+    header += 'To: %s\n' % ','.join(to_addr_list)
+    header += 'Cc: %s\n' % ','.join(cc_addr_list)
+    header += 'Subject: %s\n\n' % subject
+    message = header + message
+    server = smtplib.SMTP(smtpserver)
+    server.starttls()
+    server.login(login,password)
+    problems = server.sendmail(from_addr, to_addr_list, message)
+    server.quit()
+
+def testNames():
+      print("CHECKING THAT THE NAMES ARE THE SAME; IF NOT, WE FAIL HERE\n")
+      for i in range (0, length):
+            print("\t"+people[i][0]+" should be the same as "+hat[i])
+            assert people[i][0] == hat[i]
+      print("\nALL OF THE NAMES ARE THE SAME. GOING TO COMMENCE EMAILING\n\n\n")
+
+
+
+testNames()
+############################################################
+############################################################
+############################################################
+############################################################
+
+def secretSantaEmail():
+      counter      = 0
+      addy         = 'tanner.l.woody@gmail.com'
+      usersGmail   = 'tanner.l.woody@gmail.com'
+      pwz          = 'jajwuth1337'
+      organization = "The Java House"
+      year         = '2014'
+      name         = 'Tanner Woody'
+      spy  = ''#This should be used just for testing. The print statement should be commented out below
+      msg2 = "You've been chosed to participate in the {yr} Secret Santa for {org}!\n\n".format(yr=year, org=organization)
+      msg3 = "The results are now in.\n"
+      msg4 = "Please keep in mind your drawing before the holidays roll around!\n"
+      msg5 = "Also, please try to keep in mind the limitations that are being set in place for the prices.\n\n"
+      msg6 = "That being said, please enjoy the {yr} Secret Santa for {org}!\n\n".format(yr=year, org=organization)
+      msgs = msg2+msg3+msg4+msg5+msg6
+      ending  = "\n\nBest Regards,\n\n{nm}".format(nm = name)
+      while( len(hat)!=0 ):
+            if ((len(hat)==2)): #Avoid someone drawing their own name!
+                  counter+=1
+                  if people[0][0]==hat[0]:
+                        mesg1   = "Hi {p},\n\n".format(p=people[0][0])
+                        message = mesg1+msgs
+                        body1 = "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[0][0], p2=hat[1])
+                        spy  = spy + '\n' + "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[0][0], p2=hat[1])
+                        print("Drawing name #{ctr} for {pers}.\n".format(ctr=counter, pers = people[0][0]))
+                        body1 = message+body1+ending
+                        #addy  = people[0][1]
+                        sendemail(from_addr    = 'tanner.l.woody@gmail.com',
+                            to_addr_list = [addy]                          ,
+                            cc_addr_list = [addy]                          ,
+                            subject      = 'SECRET SANTA DRAWING!!!'       ,
+                            message      = body1                           ,
+                            login        = 'tanner.l.woody@gmail.com'      ,
+                            password     = pwz)
+                        counter+=1
+                        mesg1   = "Hi {p},\n\n".format(p=people[1][0])
+                        message = mesg1+msgs
+                        body2 = "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[1][0], p2=hat[0])
+                        spy  = spy + '\n' + "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[1][0], p2=hat[0])
+                        print("Drawing name #{ctr} for {pers}.\n".format(ctr=counter, pers = people[1][0]))
+                        body2 = message+body2+ending
+                        #addy  = people[1][1]
+                        sendemail(from_addr    = 'tanner.l.woody@gmail.com',
+                            to_addr_list = [addy]                          ,
+                            cc_addr_list = [addy]                          ,
+                            subject      = 'SECRET SANTA DRAWING!!!'       ,
+                            message      = body2                           ,
+                            login        = 'tanner.l.woody@gmail.com'      ,
+                            password     = pwz)
+                        hat.remove(hat[1])
+                        hat.remove(hat[0])
+                        people.remove(people[1])
+                        people.remove(people[0])
+                        print(counter)
+                  elif(people[1][0]==hat[0]):
+                        mesg1   = "Hi {p},\n\n".format(p=people[1][0])
+                        message = mesg1+msgs
+                        body1 = "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[1][0], p2=hat[1])
+                        spy  = spy + '\n' + "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[1][0], p2=hat[1])
+                        print("Drawing name #{ctr} for {pers}.\n".format(ctr=counter, pers = people[1][0]))
+                        body1 = message+body1+ending
+                        #addy  = people[1][1]
+                        sendemail(from_addr    = 'tanner.l.woody@gmail.com'  ,
+                            to_addr_list = [addy]                            ,
+                            cc_addr_list = [addy]                            ,
+                            subject      = 'THE REAL SECRET SANTA DRAWING!!!',
+                            message      = body1                             ,
+                            login        = 'tanner.l.woody@gmail.com'        ,
+                            password     = pwz)
+                        counter+=1
+                        mesg1   = "Hi {p},\n\n".format(p=people[0][0])
+                        message = mesg1+msgs
+                        body2 = "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[0][0], p2=hat[0])
+                        spy  = spy + '\n' + "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[0][0], p2=hat[0])
+                        print("Drawing name #{ctr} for {pers}.\n".format(ctr=counter, pers = people[0][0]))
+                        body2 = message+body2+ending
+                        #addy  = people[0][1]
+                        sendemail(from_addr    = 'tanner.l.woody@gmail.com',
+                            to_addr_list = [addy]                          ,
+                            cc_addr_list = [addy]                          ,
+                            subject      = 'SECRET SANTA DRAWING!!!'       ,
+                            message      = body2                           ,
+                            login        = 'tanner.l.woody@gmail.com'      ,
+                            password     = pwz)
+                        hat.remove(hat[1])
+                        hat.remove(hat[0])
+                        people.remove(people[1])
+                        people.remove(people[0])
+
+                  else:
+                        mesg1   = "Hi {p},\n\n".format(p=people[0][0])
+                        message = mesg1+msgs
+                        body1 = "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[0][0], p2=hat[0])
+                        spy  = spy + '\n' + "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[0][0], p2=hat[0])
+                        print("Drawing name #{ctr} for {pers}.\n".format(ctr=counter, pers = people[0][0]))
+                        body1 = message+body1+ending
+                        #addy  = people[0][1]
+                        sendemail(from_addr    = 'tanner.l.woody@gmail.com',
+                            to_addr_list = [addy]                          ,
+                            cc_addr_list = [addy]                          ,
+                            subject      = 'SECRET SANTA DRAWING!!!'       ,
+                            message      = body1                           ,
+                            login        = 'tanner.l.woody@gmail.com'      ,
+                            password     = pwz)
+                        counter+=1
+                        mesg1   = "Hi {p},\n\n".format(p=people[1][0])
+                        message = mesg1+msgs
+                        body2 = "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[1][0], p2=hat[1])
+                        spy  = spy + '\n' + "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[1][0], p2=hat[1])
+                        body2 = message+body2+ending
+                        #addy  = people[1][1]
+                        sendemail(from_addr    = 'tanner.l.woody@gmail.com',
+                            to_addr_list = [addy]                          ,
+                            cc_addr_list = [addy]                          ,
+                            subject      = 'SECRET SANTA DRAWING!!!'       ,
+                            message      = body2                           ,
+                            login        = 'tanner.l.woody@gmail.com'      ,
+                            password     = pwz)
+                        print("Drawing name #{ctr} for {pers}.\n".format(ctr=counter, pers = people[1][0]))
+                        hat.remove(hat[1])
+                        hat.remove(hat[0])
+                        people.remove(people[1])
+                        people.remove(people[0])
+                  break #Ends long 'if len(hat)==2' clause
+            else:
+                  matchee = random.choice(people)
+                  mesg1   = "Hi {p},\n\n".format(p=matchee[0]) 
+                  message = mesg1+msgs
+                  matcher = random.choice(hat)
+                  print("Drawing name #{ctr} for {pers}.\n".format(ctr=counter, pers = matchee[0]))
+                  if matchee[0] == matcher:
+                        print("\nPutting name back in hat\n")
+                  else:
+                        body = message
+                        counter+=1
+                        body = body+"Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=matchee[0], p2=matcher)
+                        body = body + ending
+                        spy  = spy + '\n' + "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=matchee[0], p2=matcher)
+                        #addy = matchee[1]
+                        sendemail(from_addr    = 'tanner.l.woody@gmail.com',
+                                  to_addr_list = [addy],
+                                  cc_addr_list = [addy],
+                                  subject      = 'SECRET SANTA DRAWING!!!',
+                                  message      = body,
+                                  login        = 'tanner.l.woody@gmail.com',
+                                  password     = pwz)
+                        people.remove(matchee) #BUG
+                        hat.remove(matcher)
+            if ((matchee[0] == matcher)&(len(hat)==1)):
+                  print("\n\nTHIS ONE IS BROKEN!!!\n")
+                  break
+      print(spy)
+      assert len(hat)==0
+
+secretSantaEmail()
