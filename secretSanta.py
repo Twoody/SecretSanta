@@ -35,9 +35,25 @@ For the main part of the program (EMAILING PEOPE!), jump to line 85 and change
 the gmail credentials that are spelled out for you! Good luck, young coder!
     
 '''
-people = [("Eddie","eddie@domain.com"), ("Matt","matt@domain.edu"),
-          ("Stephen","stephen@domain.gov"),("Tanner","tanner@domain.org")]
-hat    = ["Eddie", "Matt", "Stephen","Tanner"]
+people = [
+    ("Tanner", 'twoody@precoa.com'),
+    ('Daven', 'dsepton@precoa.com'),
+    ('Tyler Brady', 'tbrady@precoa.com'),
+    ('AJ', 'aruffner@precoa.com'),
+    ('Brandon', 'bquinn@precoa.com'),
+    ('Jason', 'jgiardino@precoa.com'),
+    ('Kathy', 'kgrahn@precoa.com'),
+    ('Lisa', 'lglazier@precoa.com'),
+    ('Shane', 'smalan@precoa.com'),
+    ('JP', 'jpnye@precoa.com'),
+    ('Nick', 'nwahlin@precoa.com'),
+    ('Sean', 'sgallagher@precoa.com'),
+    ('Remy', 'jremy@precoa.com'),
+    ('Amrit', 'asaini@precoa.com'),
+    ('Jake', 'jzollinger@precoa.com'),
+    ('Casey', 'csigelmann@precoa.com')
+]
+hat = ["Tanner", 'Daven', 'Tyler Brady', 'AJ', 'Brandon', 'Jason', 'Kathy', 'Lisa', 'Shane', 'JP', 'Nick', 'Sean', 'Remy', 'Amrit', 'Jake', 'Casey']
 length = len(hat)
 
 def sendemail(from_addr, to_addr_list, cc_addr_list,
@@ -62,8 +78,6 @@ def testNames():
             print("\t"+people[i][0]+" should be the same as "+hat[i])
             assert people[i][0] == hat[i]
       print("\nALL OF THE NAMES ARE THE SAME. GOING TO COMMENCE EMAILING\n\n\n")
-
-testNames()
 
 ############################################################
 ############################################################
@@ -132,27 +146,25 @@ def secretSanta():
             if ((len(hat)==2)):
                   counter+=1
                   body = message
-                  body = body+"Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[0][0], p2=hat[1])
-                  print (body)
+                  body = body + "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[0][0], p2=hat[1])
+                  spy = spy + '\n' + body
                   counter+=1
                   body = message
-                  body = body+"Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[1][0], p2=hat[0])
-                  print (body)
+                  body = body + "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=people[1][0], p2=hat[0])
+                  spy = spy + '\n' + body
                   break
             elif matchee[0] == matcher:
                   print("\nPutting name back in hat\n")
             else:
                   body = message
                   counter+=1
-                  body = body+"Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=matchee[0], p2=matcher)
+                  body = body + "Draw {c}.\t{p1} picks {p2}".format(c=counter, p1=matchee[0], p2=matcher)
                   spy = spy + '\n' + body
                   addy = matchee[1]
                   people.remove(matchee)
                   hat.remove(matcher)
       print(spy)
             
-secretSanta()
-
 ############################################################
 ############################################################
 ############################################################
@@ -163,8 +175,8 @@ of having a broken secret-santa. WITH MODIFICATION FOR 100 PERCENT
 '''
 
 def secretSantaTest():
-      people = ["Eddie", "Matt", "Stephen","Tanner"]
-      hat    = ["Eddie", "Matt", "Stephen","Tanner"]
+      people = ["Tanner", 'Daven', 'Tyler Brady', 'AJ', 'Brandon', 'Jason', 'Kathy', 'Lisa', 'Shane', 'JP', 'Nick', 'Sean', 'Remy', 'Amrit', 'Casey', 'Jake']
+      hat = ["Tanner", 'Daven', 'Tyler Brady', 'AJ', 'Brandon', 'Jason', 'Kathy', 'Lisa', 'Shane', 'JP', 'Nick', 'Sean', 'Remy', 'Amrit', 'Casey', 'Jake']
       flag = True
       while( len(hat)!=0 ):
             matchee = random.choice(people)
@@ -204,9 +216,6 @@ def testCases():
       good = (passes/total)*100
       bad  = (fails/total)*100
       print("PERCENT GOOD:\t{p}\nPERCENT BAD:\t{f}".format(p=good, f=bad))
-
-testCases()
-
 
 ############################################################
 ############################################################
@@ -255,4 +264,7 @@ def BADtestCases():
       bad  = (fails/total)*100
       print("PERCENT GOOD:\t{p}\nPERCENT BAD:\t{f}".format(p=good, f=bad))
 
-BADtestCases()
+testNames()
+secretSanta()
+#testCases()
+#BADtestCases()
