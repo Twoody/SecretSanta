@@ -55,7 +55,7 @@ people = [
           ('Remy Nakamura',     'jremy@precoa.com',         '1125 NW 9th Ave Apt 432, Portland, OR 97209', "I really like crows, but understand the prohibition on#13 not sending living things. I'd welcome just about any gift, but if it helps, here are some ideas to go on: I like mushrooms,  \"cities of the world\" color scheme 3M post-it notes, Miyazaki films, colorful tarot and playing card decks, Mister Rogers, carabiners for rock climbing. "),
           ('Amrit Saini',       'asaini@precoa.com',        '1621 E 6th Street, Unit 1317, Austin, TX 78702', 'Dog Toys & Socks'),                                #14
           ('Jake Zollinger',    'jzollinger@precoa.com',    '1564 n 325 w, Orem UT 84057', 'I like Legos, Starwars and food'),                                    #15
-          ('Casey Siglermann',  'csigelmann@precoa.com',    '7572 SW Oleson Rd Apt D11, Portland OR, 97223', 'Fantasy or sci-fi books or decorations')            #16
+          ('Casey Sigelmann',  'csigelmann@precoa.com',    '7572 SW Oleson Rd Apt D11, Portland OR, 97223', 'Fantasy or sci-fi books or decorations')            #16
          ]
 
 hat    = [
@@ -74,7 +74,7 @@ hat    = [
           ('Remy Nakamura',     'jremy@precoa.com',         '1125 NW 9th Ave Apt 432, Portland, OR 97209', "I really like crows, but understand the prohibition on not sending living things. I'd welcome just about any gift, but if it helps, here are some ideas to go on: I like mushrooms,  \"cities of the world\" color scheme 3M post-it notes, Miyazaki films, colorful tarot and playing card decks, Mister Rogers, carabiners for rock climbing. "),
           ('Amrit Saini',       'asaini@precoa.com',        '1621 E 6th Street, Unit 1317, Austin, TX 78702', 'Dog Toys & Socks'),
           ('Jake Zollinger',    'jzollinger@precoa.com',    '1564 n 325 w, Orem UT 84057', 'I like Legos, Starwars and food'),
-          ('Casey Siglermann',  'csigelmann@precoa.com',    '7572 SW Oleson Rd Apt D11, Portland OR, 97223', 'Fantasy or sci-fi books or decorations')
+          ('Casey Sigelmann',  'csigelmann@precoa.com',    '7572 SW Oleson Rd Apt D11, Portland OR, 97223', 'Fantasy or sci-fi books or decorations')
          ]
 
 length = len(hat)
