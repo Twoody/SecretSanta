@@ -48,7 +48,11 @@ def test_env():
     return
 
 def test_msg():
-    return
+    email = ''
+    with open('email.txt', 'r') as file:
+        email = email + file.read()
+    assert len(email) > 1
+    return 
 
 
 if __name__ == '__main__':
@@ -56,3 +60,4 @@ if __name__ == '__main__':
     print('Starting tests')
     test_email()
     test_env()
+    test_msg()
