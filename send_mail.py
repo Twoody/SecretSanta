@@ -3,22 +3,23 @@ import smtplib
 from dotenv import load_dotenv
 
 def sendEmail(
-        from_addr,
         to_addr_list, 
         cc_addr_list,
         subject,
         message,
-        login,
-        password,
-        smtpserver ='smtp.gmail.com:587'
     ):
+    # Get local variables
+    G_ACCT = os.getenv("GMAIL_ACCT")
+    G_PW = os.getenv("GMAIL_PW")
+    G_PORT = os.getenv("GMAIL_PORT")
+
     # Build out the email
     header  = '''
     From: {f}
     To: {t}
     Cc: {cc}
     Subject: {s}\n\n'''.format(
-        f  = from_addr,
+        f  = G_ACCT,
         t  = ','.join(to_addr_list),
         cc = ','.join(cc_addr_list),
         s  = subject,
@@ -26,15 +27,15 @@ def sendEmail(
     email = header + message
     print(email)
     # Send the prepped email
-    #server = smtplib.SMTP(smtpserver)
+    #server = smtplib.SMTP(G_PORT)
     #server.starttls()
-    #server.login(login,password)
-    #problems = server.sendmail(from_addr, to_addr_list, email)
+    #server.login(G_ACCT, G_PW)
+    #problems = server.sendmail(G_ACCT, to_addr_list, email)
     #server.quit()
     return
 
 def test_email():
-    sendEmail('foo', ['bar'], ['baz'], 'subj', 'message', 'login', 'pw')
+    sendEmail(['bar'], ['baz'], 'subj', 'message')
 
 def test_env():
     print('called')
@@ -44,6 +45,9 @@ def test_env():
     assert len(G_ACCT) > 0
     assert len(G_PW) > 0
     assert len(G_PORT) > 0
+    return
+
+def test_msg():
     return
 
 
