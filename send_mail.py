@@ -2,7 +2,13 @@ import os
 import smtplib
 from dotenv import load_dotenv
 
-def sendEmail(
+def get_body():
+    email = ''
+    with open('email.txt', 'r') as file:
+        email = email + file.read()
+    return email
+
+def send_email(
         to_addr_list, 
         cc_addr_list,
         subject,
@@ -25,20 +31,23 @@ def sendEmail(
         s  = subject,
     )
     email = header + message
-    print(email)
+    #print(email)
+
     # Send the prepped email
-    #server = smtplib.SMTP(G_PORT)
-    #server.starttls()
-    #server.login(G_ACCT, G_PW)
-    #problems = server.sendmail(G_ACCT, to_addr_list, email)
-    #server.quit()
-    return
+    try:
+        server = smtplib.SMTP(G_PORT)
+        server.starttls()
+        #server.login(G_ACCT, G_PW)
+        #problems = server.sendmail(G_ACCT, to_addr_list, email)
+        server.quit()
+        return True
+    except:
+        return False
 
 def test_email():
-    sendEmail(['bar'], ['baz'], 'subj', 'message')
+    send_email(['bar'], ['baz'], 'subj', 'message')
 
 def test_env():
-    print('called')
     G_ACCT = os.getenv("GMAIL_ACCT")
     G_PW = os.getenv("GMAIL_PW")
     G_PORT = os.getenv("GMAIL_PORT")
@@ -47,10 +56,9 @@ def test_env():
     assert len(G_PORT) > 0
     return
 
-def test_msg():
-    email = ''
-    with open('email.txt', 'r') as file:
-        email = email + file.read()
+def test_body():
+    email = get_body()
+    #print(email)
     assert len(email) > 1
     return 
 
@@ -60,4 +68,4 @@ if __name__ == '__main__':
     print('Starting tests')
     test_email()
     test_env()
-    test_msg()
+    test_body()
