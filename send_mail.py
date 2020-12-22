@@ -1,16 +1,19 @@
 import os
 import smtplib
 
+# TODO: What is this doing here?
 def build_env():
     from dotenv import load_dotenv
     load_dotenv('./.env')
 
     return {
-        'G_ACCT': os.getenv("GMAIL_ACCT"),
-        'G_PW':   os.getenv("GMAIL_PW"),
-        'G_PORT': os.getenv("GMAIL_PORT"),
-        'ORG':    os.getenv("ORG"),
-        'YEAR':   os.getenv("YEAR")
+        'G_ACCT':   os.getenv("GMAIL_ACCT"),
+        'G_PW':     os.getenv("GMAIL_PW"),
+        'G_PORT':   os.getenv("GMAIL_PORT"),
+        'ORG':      os.getenv("ORG"),
+        'TESTING':  os.getenv("TESTING"),
+        'WHO_AM_I': os.getenv("WHO_AM_I"),
+        'YEAR':     os.getenv("YEAR")
     }
 
 def get_body():
@@ -36,6 +39,11 @@ def get_header(
         s  = subject,
     )
     return header
+
+def get_signature():
+    e = build_env()
+    # TODO: Probably make this dynamic
+    return "\n\nBest Regards,\n\n{nm}".format(nm = e['WHO_AM_I'])
 
 def get_updated_body():
     e = build_env()
