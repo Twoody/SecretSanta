@@ -42,7 +42,31 @@ def get_updated_body():
     body = get_body()
     return body.format(min='15', max='20', yr=e['YEAR'], org=e['ORG'])
 
-def main():
+def send_email(email, to_addr_list):
+    # Get local variables
+    e = build_env()
+
+    # Send the prepped email
+    try:
+        server = smtplib.SMTP(e['G_PORT'])
+        server.starttls()
+        server.login(e['G_ACCT'], e['G_PW'])
+        problems = server.sendmail(
+            e['G_ACCT'], 
+            to_addr_list, 
+            email
+        )
+        server.quit()
+        print('SENT LETTER TO {f} FROM {t}'.format(f=e['G_ACCT'], t=', '.join(to_addr_list)))
+        return True
+    except OSError as e:
+        print(e)
+        print('\tUhoh! Email not sent!')
+        print('\tThe username/password might be the issue...')
+        print('\tBut more than likely, the `less secure` setting in the respective google account needs to be turned on')
+        return False
+
+def send_secret_santa_email():
     try:
         # First, doing the building blocks
         e       = build_env()
@@ -61,29 +85,6 @@ def main():
         print('failed')
         return False
 
-def send_email(email, to_addr_list):
-    # Get local variables
-    e = build_env()
-
-    # Send the prepped email
-    try:
-        server = smtplib.SMTP(e['G_PORT'])
-        server.starttls()
-        server.login(e['G_ACCT'], e['G_PW'])
-        problems = server.sendmail(
-            e['G_ACCT'], 
-            to_addr_list, 
-            email
-        )
-        server.quit()
-        print('passed')
-        return True
-    except OSError as e:
-        print(e)
-        print('\tUhoh! Email not sent!')
-        print('\tThe username/password might be the issue...')
-        print('\tBut more than likely, the `less secure` setting in the respective google account needs to be turned on')
-        return False
 
 ### ### ### ### ### ### ### ### ### ### 
 #                                     #
@@ -136,5 +137,3 @@ if __name__ == '__main__':
     test_body()
     assert test_server() == True
     test_header()
-
-    assert main() == True
