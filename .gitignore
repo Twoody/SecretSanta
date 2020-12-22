@@ -1,8 +1,10 @@
 .DS_Store
 **/coverage
 
-# local env files
+# local env files and setting files
 **/.env
+players.py
+
 
 # Log files
 
