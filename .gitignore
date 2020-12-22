@@ -1,5 +1,6 @@
 .DS_Store
 **/coverage
+**/__pycache__
 
 # local env files and setting files
 **/.env
