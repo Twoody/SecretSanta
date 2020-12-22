@@ -5,8 +5,8 @@
 **/.env
 players.py
 
-
-# Log files
+# Log files && stuff for later
+**/attic
 
 # Editor directories and files
 .idea
