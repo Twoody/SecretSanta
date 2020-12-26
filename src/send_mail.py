@@ -4,7 +4,7 @@ import smtplib
 # TODO: What is this doing here?
 def build_env():
     from dotenv import load_dotenv
-    load_dotenv('./.env')
+    load_dotenv('./settings/.env')
 
     return {
         'G_ACCT':   os.getenv("GMAIL_ACCT"),
@@ -18,7 +18,7 @@ def build_env():
 
 def get_body():
     email = ''
-    with open('email.txt', 'r') as file:
+    with open('./settings/email.txt', 'r') as file:
         email = email + file.read()
     return email
 
