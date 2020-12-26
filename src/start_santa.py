@@ -1,8 +1,8 @@
 # Local Imports
-import players
 import send_mail
 
 # Std Libs
+import os
 import random
 import smtplib
 
@@ -19,19 +19,22 @@ To run this program, a few details must be included. These
 details are the following:
 
     1. Run pip install on `requirement.txt` modules
-
     2. Configure .env file with GMAIL credentials, year, organization, min/max spend limits.
-
     3. A list of `people` need to be setup in `players.py`
-
     4. Check/modify `email.txt` to see what will be sent out
 '''
+
+def get_players():
+    import sys
+    sys.path.append(os.path.abspath('./settings'))
+    import players
+    return players.people
 
 def start_secret_santa():
     e            = send_mail.build_env()
     addy         = ''
     signature    = send_mail.get_signature()
-    people       = players.people
+    people       = get_players()
 
     # Randomly mixup all the people
     random.shuffle(people)
